@@ -2,3 +2,5 @@
 __pycache__/
 .env
 db-variables.env
+db-variables.prod.env
+.env.prod

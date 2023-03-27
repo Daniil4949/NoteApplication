@@ -5,21 +5,22 @@ import Header from "./components/header";
 import {Route, Routes} from "react-router-dom";
 import "./App.css";
 
+
 const App = () => {
-  return (
+    return (
+        <div className="container dark">
 
-      <div className="container">
-        <div className="app">
-          <Header/>
-          <Routes>
-            <Route path="/" exact element={<NoteListPage/>}/>
-            <Route path="/note/:id" exact element={<NotePage />}/>
-          </Routes>
+            <div className="app">
+                <Header/>
+                <Routes>
+                    <Route path="/" exact element={<NoteListPage/>}/>
+                    <Route path="/note/:id" exact element={<NotePage/>}/>
+                </Routes>
 
+            </div>
         </div>
-      </div>
 
-  )
+    )
 }
 
 export default App;
