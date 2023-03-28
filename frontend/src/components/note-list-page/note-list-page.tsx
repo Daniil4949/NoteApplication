@@ -3,17 +3,18 @@ import ListItem from "../list-item";
 import AddButton from "../add-button";
 import Notes from "../../services";
 
+
+
 const NoteListPage = () => {
-    const noteService = new Notes()
-    const [notes, setNotes] = useState([])
+    const noteService = new Notes();
+    const [notes, setNotes] = useState([]);
     useEffect(() => {
         noteService.getAllNotes()
             .then((response) => setNotes(response))
             .catch((error) => {
-                console.error('Error:', error);
+                console.log("Error: ", error);
             })
     })
-
     return (
         <div className="notes">
             <div className="notes-header">
@@ -31,5 +32,4 @@ const NoteListPage = () => {
     )
 }
 
-
-export default NoteListPage;
+export default NoteListPage

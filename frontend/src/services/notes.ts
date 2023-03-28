@@ -1,4 +1,14 @@
+import {Params} from "react-router-dom";
+
+interface Note {
+    id: number,
+    body: string,
+    updated: Date,
+    created: Date
+}
+
 export default class Notes {
+
     getAllNotes = async () => {
         const res = await fetch(`/api/v0/notes/`,
             {
@@ -13,15 +23,15 @@ export default class Notes {
         return await res.json();
     }
 
-    getDefiniteNote = async (id) => {
-        const res = await fetch(`/api/v0/notes/${id}/`)
+    getDefiniteNote = async (id: number) => {
+        const res = await fetch(`/api/v0/notes/${id}/`);
         if (!res.ok) {
-            throw new Error(`Could not fetch url`)
+            throw new Error("Could not find url")
         }
-        return await res.json()
+        return await res.json();
     }
-    deleteDefiniteBook = async (id) => {
-        const res = fetch(`/api/v0/notes/${id}/`, {
+    deleteDefiniteBook = async (id: number) => {
+        const res = await fetch(`/api/v0/notes/${id}/`, {
             method: 'DELETE',
             'headers': {
                 'Content-Type': 'application/json'
@@ -29,8 +39,9 @@ export default class Notes {
         })
         return (await res).status
     }
-    updateDefiniteBook = async (id, note) => {
-        const res = fetch(`/api/v0/notes/${id}/`, {
+
+    updateDefiniteBook = async (id: number, note: Note) => {
+        const res = await fetch(`/api/v0/notes/${id}/`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -39,9 +50,7 @@ export default class Notes {
         })
         return (await res).json()
     }
-
-
-    createNote = async (note) => {
+    createNote = async (note: Note) => {
         const res = fetch(`/api/v0/notes/`, {
             method: "POST",
             headers: {
@@ -53,3 +62,4 @@ export default class Notes {
         return (await res).json()
     }
 }
+

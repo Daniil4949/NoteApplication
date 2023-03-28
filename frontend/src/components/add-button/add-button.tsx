@@ -1,13 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {ReactComponent as AddIcon} from "../assets/add.svg";
+
+const logo = require("../assets/add.svg");
 
 const AddButton = () => {
-    return (
+    return(
         <Link to="note/new" className="floating-button">
-            <AddIcon/>
+            <img src={logo} alt="+"/>
         </Link>
     )
 }
-
 export default AddButton;
