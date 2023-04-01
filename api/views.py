@@ -5,6 +5,7 @@ from api.serializers import NoteSerializer
 from rest_framework.response import Response
 
 
+
 class NoteViewSet(viewsets.ViewSet):
     @action(methods=['get'], detail=True)
     def get_note_list(self, *args, **kwargs):
