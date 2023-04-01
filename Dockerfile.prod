@@ -1,7 +1,10 @@
 FROM python:3.10.6-alpine
+FROM ubuntu:20.04
 ENV PYTHONUNBUFFERED=1
 WORKDIR .
 
+RUN apt-get update && apt-get install -y tzdata && apt install -y python3.8 python3-pip
+RUN apt install python3-dev libpq-dev nginx -y
 RUN pip install pipenv
 RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
 
@@ -12,4 +15,6 @@ RUN pip install pipenv
 RUN pipenv install --dev --system --deploy
 COPY entrypoint.prod.sh .
 COPY . .
+EXPOSE 8000
+CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "NoteApplication.wsgi"]
 ENTRYPOINT ["./entrypoint.prod.sh"]
